@@ -16,8 +16,16 @@ jobs:
     name: Step output
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js
+      uses: actions/setup-node@main
     - name: Create vars
       id: vars
       run: echo "var1=${{ github.event.inputs.platform }}\nvar2=var2" >> $GITHUB_OUTPUT
+    - name: Create vars with Node script
+      id: nodescript
+      run: node ./.github/workflows/step-output-node-script.js >> $GITHUB_OUTPUT
     - name: Read vars
-      run: echo "read vars - var1=${{ steps.vars.outputs.var1 }}, var2=${{ steps.vars.outputs.var2 }}"
+      run: |
+        echo "read vars - var1=${{ steps.vars.outputs.var1 }}, var2=${{ steps.vars.outputs.var2 }}"
+        echo "read vars from Node script - var1=${{ steps.nodescript.outputs.nodevar1 }}, var2=${{ steps.nodescript.outputs.nodevar2 }}"
