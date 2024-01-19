@@ -21,7 +21,9 @@ jobs:
       uses: actions/setup-node@main
     - name: Create vars
       id: vars
-      run: echo "var1=${{ github.event.inputs.platform }}\nvar2=var2" >> $GITHUB_OUTPUT
+      run: |
+        echo "var1=${{ github.event.inputs.platform }}" >> $GITHUB_OUTPUT
+        echo "var2=var2" >> $GITHUB_OUTPUT
     - name: Create vars with Node script
       id: nodescript
       run: node ./.github/workflows/step-output-node-script.js >> $GITHUB_OUTPUT
