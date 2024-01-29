@@ -5,7 +5,7 @@ on:
 
 jobs:
   call-workflow:
-    uses: ./.github/workflows/eas_build.yml
+    uses: ./.github/workflows/callable_workflow.yml
     with:
       input1: Ipsum
   read-vars:
