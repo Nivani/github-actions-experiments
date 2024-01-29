@@ -8,7 +8,7 @@ on:
       output1:
         value: ${{ jobs.callable.outputs.output1 }}
       output2:
-        value: ${{ jobs.callable.outputs.output1 }}
+        value: ${{ jobs.callable.outputs.output2 }}
 
 jobs:
   callable:
@@ -21,5 +21,5 @@ jobs:
       - name: Step 1
         id: step1
         run: |
-          printf "output1=output1${{ github.event.inputs.input1 }}\n" | tee $GITHUB_OUTPUT
+          printf "output1=output1${{ inputs.input1 }}\n" | tee $GITHUB_OUTPUT
           printf "output2=Lipsum\n" | tee $GITHUB_OUTPUT
