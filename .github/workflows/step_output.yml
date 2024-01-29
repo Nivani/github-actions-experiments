@@ -22,11 +22,11 @@ jobs:
     - name: Create vars
       id: vars
       run: |
-        echo "var1=${{ github.event.inputs.platform }}" >> $GITHUB_OUTPUT
+        echo "var1=${{ github.event.inputs.platform }}" | tee $GITHUB_OUTPUT
         echo "var2=var2" | tee $GITHUB_OUTPUT
     - name: Create vars with Node script
       id: nodescript
-      run: node ./.github/workflows/step-output-node-script.js >> $GITHUB_OUTPUT
+      run: node ./.github/workflows/step-output-node-script.js | tee $GITHUB_OUTPUT
     - name: Read vars
       run: |
         echo "read vars - var1=${{ steps.vars.outputs.var1 }}, var2=${{ steps.vars.outputs.var2 }}"
