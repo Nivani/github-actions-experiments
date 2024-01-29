@@ -3,7 +3,7 @@ name: Step output
 on:
   workflow_dispatch:
     inputs:
-      platform:
+      who:
         type: choice
         description: Who?
         required: true
@@ -22,8 +22,8 @@ jobs:
     - name: Create vars
       id: vars
       run: |
-        echo "var1=${{ github.event.inputs.platform }}" | tee $GITHUB_OUTPUT
-        echo "var2=var2" | tee $GITHUB_OUTPUT
+        printf "var1=${{ github.event.inputs.who }}\n" | tee $GITHUB_OUTPUT
+        printf "var2=var2\n" | tee $GITHUB_OUTPUT
     - name: Create vars with Node script
       id: nodescript
       run: node ./.github/workflows/step-output-node-script.js | tee $GITHUB_OUTPUT
