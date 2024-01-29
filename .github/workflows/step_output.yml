@@ -22,6 +22,7 @@ jobs:
     - name: Create vars
       id: vars
       run: |
+        printf "\n" >> $GITHUB_OUTPUT
         printf "var1=${{ github.event.inputs.who }}\n" | tee $GITHUB_OUTPUT
         printf "var2=var2\n" | tee $GITHUB_OUTPUT
     - name: Create vars with Node script
