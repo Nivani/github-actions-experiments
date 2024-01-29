@@ -1,0 +1,25 @@
+on:
+  workflow_call:
+    inputs:
+      input1:
+        type: string
+        required: true
+    outputs:
+      output1:
+        value: ${{ jobs.callable.outputs.output1 }}
+      output2:
+        value: ${{ jobs.callable.outputs.output1 }}
+
+jobs:
+  callable:
+    name: ⛏ Callable workflow
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.step1.outputs.output1 }}
+      output2: ${{ steps.step1.outputs.output2 }}
+    steps:
+      - name: Step 1
+        id: step1
+        run: |
+          printf "output1=output1${{ github.event.inputs.input1 }}\n" | tee $GITHUB_OUTPUT
+          printf "output2=Lipsum\n" | tee $GITHUB_OUTPUT
